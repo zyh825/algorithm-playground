@@ -6,9 +6,10 @@ const bubble_sort = require('../sort/bubble');
 const select_sort = require('../sort/select');
 const quick_sort = require('../sort/quick');
 const quick_v2_sort = require('../sort/quick_v2');
+const merge_sort = require('../sort/merge');
 
 // unit test
-const unit_array = array_generator(10);
+// const unit_array = array_generator(10);
 // console.log(unit_array);
 // console.log('native result', unit_array.sort((a, b) => a > b));
 // console.log('native reverse result', unit_array.sort((a, b) => a < b));
@@ -36,17 +37,33 @@ suite
 //     orderBy(array_generator(100000));
 //     orderBy(array_generator(100000), [], 'desc');
 //   })
-//   .add('native#sort', function () {
-//     array_generator(100000).sort((a, b) => a > b);
-//     array_generator(100000).sort((a, b) => a < b);
-//   })
+  .add('native#sort', function () {
+    let tmp = 100;
+    while (tmp--) {
+      array_generator(10000).sort((a, b) => a > b);
+      array_generator(10000).sort((a, b) => a < b);
+    }
+  })
+  .add('sort#merge', function () {
+    let tmp = 100;
+    while (tmp--) {
+      merge_sort(array_generator(10000));
+      merge_sort(array_generator(10000), false);
+    }
+  })
   .add('sort#quick', function () {
-    quick_sort(array_generator(100000));
-    quick_sort(array_generator(100000), false);
+    let tmp = 100;
+    while (tmp--) {
+      quick_sort(array_generator(10000));
+      quick_sort(array_generator(10000), false);
+    }
   })
   .add('sort#quick_v2', function () {
-    quick_v2_sort(array_generator(100000));
-    quick_v2_sort(array_generator(100000), false);
+    let tmp = 100;
+    while (tmp--) {
+      quick_v2_sort(array_generator(10000));
+      quick_v2_sort(array_generator(10000), false);
+    }
   })
   // add listeners
   .on('cycle', function (event) {
