@@ -8,6 +8,8 @@ const quick_sort = require('../sort/quick');
 const quick_v2_sort = require('../sort/quick_v2');
 const merge_sort = require('../sort/merge');
 
+const loop = 1000;
+
 // unit test
 // const unit_array = array_generator(10);
 // console.log(unit_array);
@@ -38,28 +40,28 @@ suite
 //     orderBy(array_generator(100000), [], 'desc');
 //   })
   .add('native#sort', function () {
-    let tmp = 100;
+    let tmp = loop;
     while (tmp--) {
       array_generator(10000).sort((a, b) => a > b);
       array_generator(10000).sort((a, b) => a < b);
     }
   })
   .add('sort#merge', function () {
-    let tmp = 100;
+    let tmp = loop;
     while (tmp--) {
       merge_sort(array_generator(10000));
       merge_sort(array_generator(10000), false);
     }
   })
   .add('sort#quick', function () {
-    let tmp = 100;
+    let tmp = loop;
     while (tmp--) {
       quick_sort(array_generator(10000));
       quick_sort(array_generator(10000), false);
     }
   })
   .add('sort#quick_v2', function () {
-    let tmp = 100;
+    let tmp = loop;
     while (tmp--) {
       quick_v2_sort(array_generator(10000));
       quick_v2_sort(array_generator(10000), false);
