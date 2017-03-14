@@ -1,1 +1,1 @@
-# algorithm-playground
+# playground
