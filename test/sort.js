@@ -7,8 +7,9 @@ const select_sort = require('../sort/select');
 const quick_sort = require('../sort/quick');
 const quick_v2_sort = require('../sort/quick_v2');
 const merge_sort = require('../sort/merge');
+const ryf_qsort = require('../sort/ruanyifeng_quick_sort');
 
-const loop = 1000;
+const loop = 5;
 
 // unit test
 // const unit_array = array_generator(10);
@@ -27,18 +28,15 @@ const loop = 1000;
 // // performance test
 const suite = new Benchmark.Suite;
 suite
-// .add('sort#bubble', function () {
-//   bubble_sort(array_generator(100000));
-//   bubble_sort(array_generator(100000), false);
-// })
-// .add('sort#select', function () {
-//   select_sort(array_generator(100000));
-//   select_sort(array_generator(100000), false);
-// })
-//   .add('lodash#orderBy', function () {
-//     orderBy(array_generator(100000));
-//     orderBy(array_generator(100000), [], 'desc');
-//   })
+  .add('sort#bubble', function () {
+    bubble_sort(array_generator(10000));
+  })
+  .add('sort#select', function () {
+    select_sort(array_generator(10000));
+  })
+  .add('lodash#orderBy', function () {
+    orderBy(array_generator(10000));
+  })
   .add('native#sort', function () {
     let tmp = loop;
     while (tmp--) {
@@ -57,14 +55,19 @@ suite
     let tmp = loop;
     while (tmp--) {
       quick_sort(array_generator(10000));
-      quick_sort(array_generator(10000), false);
     }
   })
   .add('sort#quick_v2', function () {
     let tmp = loop;
     while (tmp--) {
       quick_v2_sort(array_generator(10000));
-      quick_v2_sort(array_generator(10000), false);
+    }
+  })
+  .add('sort#ryf_qsort', function () {
+    let tmp = loop;
+    while (tmp--) {
+      // ugly;
+      ryf_qsort(array_generator(10000));
     }
   })
   // add listeners

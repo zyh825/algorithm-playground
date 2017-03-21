@@ -1,31 +1,18 @@
 const cloneArray = require('../utils/cloneArray');
 
 function partition(array, leftPointer, rightPointer, asc) {
-  if (leftPointer >= rightPointer) return false;
+  if (leftPointer >= rightPointer) return leftPointer;
   let pivotValue = array[leftPointer];
   while (leftPointer < rightPointer) {
-    if (asc) {
-      while (leftPointer < rightPointer && (array[rightPointer] >= pivotValue)) {
-        rightPointer--;
-      }
-      array[leftPointer] = array[rightPointer];
-      // 左指针向右扫描
-      while (leftPointer < rightPointer && (array[leftPointer] <= pivotValue)) {
-        leftPointer++;
-      }
-      array[rightPointer] = array[leftPointer];
-    } else {
-      // 右指针向左扫描
-      while (leftPointer < rightPointer && (array[rightPointer] <= pivotValue)) {
-        rightPointer--;
-      }
-      array[leftPointer] = array[rightPointer];
-      // 左指针向右扫描
-      while (leftPointer < rightPointer && (array[leftPointer] >= pivotValue)) {
-        leftPointer++;
-      }
-      array[rightPointer] = array[leftPointer];
+    while (leftPointer < rightPointer && (array[rightPointer] >= pivotValue)) {
+      rightPointer--;
     }
+    array[leftPointer] = array[rightPointer];
+    // 左指针向右扫描
+    while (leftPointer < rightPointer && (array[leftPointer] <= pivotValue)) {
+      leftPointer++;
+    }
+    array[rightPointer] = array[leftPointer];
     array[leftPointer] = pivotValue;
   }
   return leftPointer;
@@ -39,11 +26,18 @@ function quick_sort(array, left, right, asc) {
 }
 
 function facade(source, asc = true) {
-  const array = cloneArray(source, asc);
+  const array = source.slice(0);
   quick_sort(array, 0, array.length - 1, asc);
   return array;
 }
 
 module.exports = facade;
 
-// console.log(facade([ 8, 5, 0, 3, 3, 9, 4, 1, 2, 7 ], false));
+const arr1 = [8, 5, 0, 3, 3, 9, 4, 1, 2, 7];
+const arr2 = [1, 3, 4, 5, 9, 2, 6];
+
+
+// console.log(facade(arr1));
+// console.log(facade(arr2));
+// console.log(arr1);
+// console.log(arr2);
