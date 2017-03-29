@@ -9,7 +9,7 @@ function part(array, left, right, asc) {
 }
 
 function merge(array, left, mid, right, asc) {
-  const tmp = new Array(right - left + 1); // optimize
+  const tmp = [...new Array(right - left + 1)]; // optimize
   let pointer = 0;
 
   let lp = left;

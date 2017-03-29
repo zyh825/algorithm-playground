@@ -2,12 +2,12 @@ const Benchmark = require('benchmark');
 const orderBy = require('lodash/orderBy');
 
 const array_generator = require('../utils/array_generator');
-const bubble_sort = require('../sort/bubble');
-const select_sort = require('../sort/select');
-const quick_sort = require('../sort/quick');
-const quick_v2_sort = require('../sort/quick_v2');
-const merge_sort = require('../sort/merge');
-const ryf_qsort = require('../sort/ruanyifeng_quick_sort');
+const bubble_sort = require('./bubble');
+const select_sort = require('./select');
+const quick_sort = require('./quick');
+const quick_v2_sort = require('./quick_v2');
+const merge_sort = require('./merge');
+const ryf_qsort = require('./ruanyifeng_quick_sort');
 
 const loop = 5;
 
